@@ -1,7 +1,4 @@
 // Sistema de Inscripción Escolar — lógica del lado del cliente
-//
-// TODO (rama feature-validacion): completar la validación del formulario
-// de contacto antes de que el "envío" se considere exitoso.
 
 document.getElementById("form-contacto").addEventListener("submit", function (e) {
   e.preventDefault();
@@ -10,9 +7,20 @@ document.getElementById("form-contacto").addEventListener("submit", function (e)
   const correo = document.getElementById("correo").value.trim();
   const mensaje = document.getElementById("mensaje").value.trim();
 
-  // TODO (rama feature-validacion): agregar aquí las reglas de validación,
-  // por ejemplo: que ningún campo esté vacío, y que el correo tenga un
-  // formato razonable (contenga "@" y ".").
+  // Validación 1: Comprobar que ningún campo esté vacío
+  if (nombre === "" || correo === "" || mensaje === "") {
+    alert("Por favor, completa todos los campos.");
+    return; // Detiene la ejecución de la función
+  }
 
-  alert("Formulario recibido (validación pendiente de implementar).");
+  // Validación 2: Comprobar que el correo contenga al menos un "@" y un "."
+  if (!correo.includes("@") || !correo.includes(".")) {
+    alert("Por favor, ingresa un correo válido (debe contener '@' y un punto).");
+    return; // Detiene la ejecución de la función
+  }
+
+  // Si todas las validaciones pasan, el envío es exitoso
+  alert("¡Formulario validado y enviado con éxito!");
+  
+  // Aquí podrías agregar el código para enviar los datos al servidor (ej. fetch o XMLHttpRequest)
 });
